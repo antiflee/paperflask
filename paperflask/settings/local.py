@@ -26,7 +26,10 @@ SECRET_KEY = 'p)0u$24rm+e^3@hxiijx$&_k4j63teg8ebi$f3f$j+zl(b5nnv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'paperflask.herokuapp.com',
+    '127.0.0.1',
+]
 
 
 # Application definition
