@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Paper Flask</title>
+  	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Paper Flask</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          	<li class="active"><a href="#">Home</a></li>
+          	<li><a href="#">About</a></li>
+          	<!-- <li><a href="#">Contact</a></li> -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-user-plus"></i> Sign Up</a></li>
+            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+    	<div class="row">
+    		<div class="col-lg-12">
+    			<div id="content">
+    				<h1>Paper Flask</h1>
+    				<h3>Find similar academic publications</h3>
+            <br>
+            <form id="submitTitleForm" action="{% url 'home' %}" method="post">
+              {% csrf_token %}
+              <div class="input-group">
+                <input type="text" name="queryTitle" class="form-control" placeholder="Type query title here..." value="{{ queryTitle }}">
+                <span class="input-group-btn">
+                  <input id="submitButton" type="submit" class="btn btn-default" value="Find similar papers">
+                </span>
+              </div>
+            </form>
+    			</div>
+
+          <div id="analyzingTitleText">
+            <h3>Analyzing...</h3>
+          </div>
+
+          <div id="papersFoundDiv" style="width:80%;margin-left:10%">
+            <hr>
+            <ul class="list-group">
+              {% for paper in papersFound %}
+                <li class="list-group-item" style="color:black">{{ paper }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+    		</div>
+    	</div>
+    </div>
+
+
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+ <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ <script type="text/javascript">
+    $(document.body).on("click", "#submitButton", function(e){
+      $("#papersFoundDiv").hide();
+      var btn = $("#analyzingTitleText");
+      btn.fadeIn();
+    })
+
+    {% if papersFound %}
+      $(document).ready(function(){
+        $("#papersFoundDiv").slideDown()
+      });
+    {% endif %}
+ </script>
+</body>
+</html>
