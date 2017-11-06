@@ -48,7 +48,7 @@
             <form id="submitTitleForm" action="{% url 'home' %}" method="post">
               {% csrf_token %}
               <div class="input-group">
-                <input type="text" name="queryTitle" class="form-control" placeholder="Type query title here..." value="{{ queryTitle }}">
+                <input type="text" name="queryTitle" class="form-control" placeholder="Type title here..." value="{{ queryTitle }}">
                 <span class="input-group-btn">
                   <input id="submitButton" type="submit" class="btn btn-default" value="Find similar papers">
                 </span>
