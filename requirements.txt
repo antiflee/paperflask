@@ -3,7 +3,7 @@ bz2file==0.98
 certifi==2017.11.5
 chardet==3.0.4
 dj-database-url==0.4.2
-Django==1.11.7
+Django==2.2.24
 gensim==3.0.1
 gunicorn==19.7.1
 idna==2.6
